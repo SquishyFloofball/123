@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Mail</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+        }
+        #mailIcon {
+            font-size: 50px;
+            cursor: pointer;
+        }
+        #message, #choices, #catImage, #yayImage, #nextPage, #finalMessage {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #catImage img, #yayImage img, .movie img {
+            width: 300px;
+        }
+        #finalMessage h1 {
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="mailIcon" onclick="showMessage()">??</div>
+    <div id="message"></div>
+    <div id="choices">
+        <button onclick="selectYes()">Yes</button>
+        <button id="noBtn" onclick="changeNoToYes()">No</button>
+    </div>
+    <div id="catImage">
+        <img src="https://media.giphy.com/media/l2JHRhAtnJSDNJ2py/giphy.gif" alt="Cat Kissing Screen">
+    </div>
+    <div id="yayImage">
+        <h1>YAYYY</h1>
+        <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Inlove Cat">
+        <br>
+        <button onclick="showNextPage()">Next</button>
+    </div>
+    <div id="nextPage">
+        <h1>Say tanawon ugma?</h1>
+        <div class="movie">
+            <img src="https://upload.wikimedia.org/wikipedia/en/6/69/Captain_America_Brave_New_World_poster.jpg" alt="Captain America: Brave New World">
+            <br>
+            <button onclick="chooseMovie()">Captain America: Brave New World</button>
+        </div>
+        <div class="movie">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Buffalo_Kids_Poster.jpg/220px-Buffalo_Kids_Poster.jpg" alt="Buffalo Kids">
+            <br>
+            <button onclick="chooseMovie()">Buffalo Kids</button>
+        </div>
+    </div>
+    <div id="finalMessage">
+        <h1>OWKII</h1>
+    </div>
+    
+    <script>
+        let clickCount = 0;
+        let yesCount = 0;
+
+        function showMessage() {
+            const messageDiv = document.getElementById("message");
+            if (clickCount === 0) {
+                messageDiv.innerText = "Hi";
+                messageDiv.style.display = "block";
+            } else if (clickCount === 1) {
+                messageDiv.innerText = "Will you be my Valentine, Gwinit?";
+                document.getElementById("choices").style.display = "block";
+            }
+            clickCount++;
+        }
+
+        function selectYes() {
+            yesCount++;
+            if (yesCount >= 2) {
+                document.getElementById("choices").style.display = "none";
+                document.getElementById("message").style.display = "none";
+                document.getElementById("yayImage").style.display = "block";
+            }
+        }
+
+        function changeNoToYes() {
+            document.getElementById("message").innerText = "Bagon tka";
+            document.getElementById("noBtn").innerText = "Yes";
+        }
+
+        function showNextPage() {
+            document.getElementById("yayImage").style.display = "none";
+            document.getElementById("nextPage").style.display = "block";
+        }
+
+        function chooseMovie() {
+            document.getElementById("nextPage").style.display = "none";
+            document.getElementById("finalMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
